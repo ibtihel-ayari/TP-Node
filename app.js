@@ -1,24 +1,24 @@
 const express = require('express');
-const app = express();
-//const PORT = 3000;
 const mongoose = require('mongoose');
-const dotenv = require ('dotenv');
+const dotenv = require('dotenv');
+const app = express();
 
+dotenv.config();
 
+const MONGODB_URI = process.env.MONGODB_URL;
+const PORT = process.env.PORT || 3000;
 
-dotenv.config()
-const MONGODB_URI = process.env.MONGODB_URI
-const PORT = process.env.PORT||3000
-
-// define a route
+// Define a route
 app.get('/', (req, res) => {});
 
-// connection to mongodb and start server
-mongoose.connect(MONGODB_URI).then(() => {
-    console.log('connected to mongoDb');
-    app.listen(PORT, () => {
-        console.log(`server listening on ${PORT}`);
+// Connection to MongoDB and start server
+mongoose.connect(MONGODB_URI)
+    .then(() => {
+        console.log('Connected to MongoDB');
+        app.listen(PORT, () => {
+            console.log(`Server listening on ${PORT}`);
+        });
+    })
+    .catch((err) => {
+        console.error('Error connecting to MongoDB:', err.message);
     });
-}).catch((err) => {
-    console.error('Error connecting to mongodb:', err.message);
-});
