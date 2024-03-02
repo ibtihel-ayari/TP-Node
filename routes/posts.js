@@ -8,7 +8,7 @@ router.get('/posts', async(req,res) => {
 
 } )
 
-router.post('/addpost',async(req ,res) => {
+router.post('/add',async(req ,res) => {
 
     try {
 const {title , body } = req.body ;
